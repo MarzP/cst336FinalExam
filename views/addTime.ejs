@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Final Scheduler </title>
+    </head>
+    <body>
+        
+        <h1> Add New Time Slot! </h1>
+        <!--20 points-->
+        <!--Date - Start Time - End Time -- Cancel Button  -- Add -->
+        
+        
+        <div class="container">
+            <form action="/insertTimeSlot" method="post">
+            Date: <input type="date" id="date" name="date"><br> <br>
+            Start time: <input type="time" id="startTime" name="startTime"><br> <br>
+            End time: <input type="time" id="endTime" name="endTime"><br> <br>
+            
+            <br><br>
+            <button type="button" onclick="javascript:window.close()">Cancel</button>
+            <input type="submit">
+            </form>
+        </div>
+        
+        
+    </body>
+</html>

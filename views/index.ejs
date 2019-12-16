@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Final Scheduler </title>
+        <!--css-->
+        <!--<link rel="stylesheet" href="/css/styles.css"/>-->
+        <!--bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        
+    </head>
+    <body>
+        <div class="container">
+        <h1> Final Scheduler </h1>
+        <!--20 points-->
+        <!--Should show list of time slots-->
+        <!--Date - Start Time - Duration - Booked By -- Details Button -- Delete Button-->
+        <!--Nav Bar-->
+        <div>
+            <a href="/final">Dashboard</a>
+            <a href="/addTime">Add Time Slot</a>
+            <a href="/rubric">Rubric</a>
+        </div>
+        </div>
+        <!--Table-->
+       
+        <table class="container">
+            <tr id="table-header">
+                <td><strong>Date</strong></td>
+                <td><strong>Start Time</strong></td>
+                <td><strong>Duration</strong></td>
+                <td><strong>Booked By</strong></td>
+            </tr>
+            
+            <% timeSlots.forEach(function(timeSlot) { %>
+                <tr>
+                    <th><%= timeSlot.dateOfSlot %></th>
+                    <th><%= timeSlot.startTime %></th>
+                    <th><%= timeSlot.endTime %></th>
+                    <th><%= timeSlot.bookedByFirstName %> 
+                    <a id="delete" class="btn btn-outline-danger" href="/deleteTime" onclick="centeredPopup(this.href, 'myWindow', '800','450','yes');return false">Delete</a></th>
+                </tr>
+            <% }); %>
+            
+        </table>
+        <br><br>
+        <div id="message"></div>
+        
+        <div class="container"> 
+        
+        <!--Add Button-->
+        <p><a id="add" class="btn btn-outline-success" href="/addTime"
+      onclick="centeredPopup(this.href,'myWindow','800','450','yes');return false">Add new appointment!</a></p>
+        
+        
+        <!--<h1 class>Add New Time Slot</h1>-->
+        <!--    <form action="/deleteTime" method="post">-->
+        <!--    Date: <input type="date" id="date" name="date"><br> <br>-->
+        <!--    Start time: <input type="time" id="startTime" name="startTime"><br> <br>-->
+        <!--    End time: <input type="time" id="endTime" name="endTime"><br> <br>-->
+            
+        <!--    <br><br>-->
+            <!--<button id="addTimeSlotbtn" class="btn btn-lg btn-success" onclick="window.location.href='/addTime'">Add Time Slot!</button>-->
+        <!--    <input type="submit">-->
+        <!--</form>-->
+        
+        </div>
+        <br><br>
+            
+            
+        <script>
+            var popupWindow = null;
+            
+            function centeredPopup(url, winName, w, h, scroll) {
+                LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
+                TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
+                settings =
+                    'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll + ',resizable'
+                popupWindow = window.open(url, winName, settings)
+            }
+            
+            // //add TimeSlot
+            // $("#addTimeSlotbtn").on("click", function () {
+            //     let date = $("#date").val();
+            //     let startTime = $("#startTime").val();
+            //     let endTime = $("#endTime").val();
+            //     console.log("add time slot");
+            //     //insertTimeSlot(date, startTime, endTime);
+           
+            // });//addTimeSlot
+            
+            //Delete TimeSlot
+            $("#deleteBtn").on("click", function() {
+                // var tables = document.getElementsByTagName('table');
+                // var table = tables[tables.length - 1];
+                // var rows = table.rows;
+                console.log("delete time slot");
+                //deleteTimeSlot();
+                
+                $.ajax({
+                     method: "GET",
+                    url: "/deleteTimeSlot",
+                    dataType: "json",
+                    data: {
+                        
+                    },
+                    success: function (result, status) {
+                        console.log("success");
+                        deleteTimeSlot();
+                    }
+                
+                });//ajax
+            });//deletebutton
+            
+            //shows incrementing rows in an attempt to access specific delete button
+            // var tables = document.getElementsByTagName('table');
+            // var table = tables[tables.length - 1];
+            // var rows = table.rows;
+            // for(var i = 0; i < rows.length;i++) {
+            //     td = document.createElement('td');
+            //     td.appendChild(document.createTextNode(i));
+            //     rows[i].insertBefore(td, rows[i].lastChild);
+                
+            // }
+        
+            </script>
+        
+    </body>
+</html>
