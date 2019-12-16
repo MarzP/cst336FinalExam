@@ -34,6 +34,18 @@ app.get("/rubric", async function (req, res) {
     res.render("rubric");
 });//deleteTime
 
+app.get("/insertTS", async function (req, res) {
+    insertTimeSlot(req.query);
+    console.log("in insertTS");
+    
+});//insertTS
+
+app.get("/deleteTS", async function(req,res) {
+    deleteTimeSlot();
+    console.log("in delete");
+    
+});//deleteTS
+
 ////////////////////////////////////////////////////////////
 // FUNCTIONS
 ////////////////////////////////////////////////////////////
@@ -56,7 +68,7 @@ function getTimeSlots(query) {
     });//promise
 }//getTimeSlots
 
-function insertTimeSlot(dateOfSlot, startTime, endTime) {
+function insertTimeSlot(query) {
     let conn = dbConnection();
     
     return new Promise(function(resolve, reject) {
@@ -64,11 +76,11 @@ function insertTimeSlot(dateOfSlot, startTime, endTime) {
             if(err) throw err;
             
             let sql = `INSERT INTO \`final_timeslots\`
-                      (dateOfSlot, startTime, endTime, firstName, lastName)
-                      VALUES (?,?,?,?,?)
+                      (slotId, dateOfSlot, startTime, endTime, bookedByFirstName, bookedByLastName)
+                      VALUES (?,?,?,?,?,?)
                       `;
                       
-            let params = [dateOfSlot, startTime, endTime, "Not", "Booked"];
+            let params = [1, dateOfSlot2, startTime2, endTime2, 'Not', 'Booked'];
             
             conn.query(sql, params, function(err, rows, fields) {
                 if(err) throw err;
@@ -107,6 +119,8 @@ function dbConnection() {
     });//createConnection
     return conn;
 }//dbConnection
+
+
 
 // starting server
 app.listen(process.env.PORT || 3000, process.env.IP, function () {

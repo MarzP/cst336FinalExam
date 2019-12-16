@@ -2,6 +2,7 @@
 <html>
     <head>
         <title> Final Scheduler </title>
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     </head>
     <body>
         
@@ -11,5 +12,22 @@
         <!--Start Time - End Time -- Cancel Button  -- Yes, Remove It! -->
         <!--Are you sure you want to remove the time slot? This cannot be undone.-->
         <button type="button" onclick="javascript:window.close()">Cancel</button>
+        <form class="ajax_caller">
+        <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+        <script>
+            // click event
+            $(document).on('submit', 'form.ajax_caller', do_ajax_call)
+
+            function do_ajax_call (e) {
+                console.log("test");
+                e.preventDefault()
+                $.get('/deleteTS', function (res) {
+                console.log('callback after your node function is done')
+                })
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
     </body>
 </html>
