@@ -80,7 +80,7 @@ function insertTimeSlot(query) {
                       VALUES (?,?,?,?,?,?)
                       `;
                       
-            let params = [1, dateOfSlot2, startTime2, endTime2, 'Not', 'Booked'];
+            let params = [1, query.inputDate, query.inputStartTime, query.inputEndTime, 'Not', 'Booked'];
             
             conn.query(sql, params, function(err, rows, fields) {
                 if(err) throw err;
