@@ -15,7 +15,7 @@
                     <th><%= timeSlot.startTime %></th>
                     <th><%= timeSlot.endTime %></th>
                     <th><%= timeSlot.bookedByFirstName %> 
-                    <a id="delete" class="btn btn-outline-danger" href="/deleteTime" onclick="centeredPopup(this.href, 'myWindow', '800','450','yes');return false">Delete</a></th>
+                    <a id="delete" class="btn btn-outline-danger" href="/deleteTime" onclick="centeredPopup(this.href, 'myWindow', '450','350','yes');return false">Delete</a></th>
                 </tr>
             <% }); %>
             
@@ -26,7 +26,7 @@
         
         <!--Add Button-->
         <p><a id="add" class="btn btn-outline-success" href="/addTime"
-      onclick="centeredPopup(this.href,'myWindow','800','450','yes');return false">Add new appointment!</a></p>
+      onclick="centeredPopup(this.href,'myWindow','450','350','yes');return false">Add new appointment!</a></p>
         
         
         </div>

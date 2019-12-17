@@ -11,9 +11,20 @@
         <!--Be a pop up when clicking to delete a certain time slot-->
         <!--Start Time - End Time -- Cancel Button  -- Yes, Remove It! -->
         <!--Are you sure you want to remove the time slot? This cannot be undone.-->
-        <button type="button" onclick="javascript:window.close()">Cancel</button>
+        
+        <div class="container">
+            Start Time:
+            <br>
+            End Time: 
+            <br>
+            <p>Are you sure you want to remove the time slot? This cannot be undone.</p>
+        </div>
+        
+        
+        
         <form class="ajax_caller">
-        <button type="submit" class="btn btn-primary">Delete</button>
+            <button type="button" onclick="javascript:window.close()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Delete</button>
         </form>
         <script>
             // click event
